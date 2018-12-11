@@ -10,7 +10,7 @@ import kz.kolesa.contactlistapp.domain.model.Contact
 class DefaultContactRepository(
     private val contactsDatabase: ContactsDatabase
 ) : ContactRepository {
-    override suspend fun getAllContacts(): Response<List<MappedContact>> {
+    override suspend fun getAllContacts(): Response<ArrayList<MappedContact>> {
         return try {
             val result = arrayListOf<MappedContact>()
             val contactList = contactsDatabase.contactDataDao().getAll()

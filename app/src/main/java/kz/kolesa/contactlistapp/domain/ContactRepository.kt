@@ -7,7 +7,7 @@ import kz.kolesa.contactlistapp.domain.model.Contact
  */
 interface ContactRepository {
 
-    suspend fun getAllContacts(): Response<List<MappedContact>>
+    suspend fun getAllContacts(): Response<ArrayList<MappedContact>>
 
     suspend fun getContact(id: Int): Response<MappedContact?>
 

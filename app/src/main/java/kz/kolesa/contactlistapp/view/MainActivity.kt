@@ -40,8 +40,16 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
         initAdapter()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.getAllContacts()
+    }
+
     override fun onItemClick(pos: Int) {
         //todo open detail activity
+        val intent = Intent(this, ContactDetailActivity::class.java)
+        intent.putExtra("id", mainViewModel.getContactList()[pos].contact.id)
+        startActivity(intent)
     }
 
     private fun writePredefinedData() {

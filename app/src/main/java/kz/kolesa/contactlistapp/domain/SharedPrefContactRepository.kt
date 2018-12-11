@@ -16,7 +16,7 @@ class SharedPrefContactRepository(
     private val sharedPrefs: SharedPreferences
 ) : ContactRepository {
 
-    override suspend fun getAllContacts(): Response<List<MappedContact>> {
+    override suspend fun getAllContacts(): Response<ArrayList<MappedContact>> {
         val allEntries = sharedPrefs.all
         val result = arrayListOf<MappedContact>()
         allEntries.keys.forEach{key ->
@@ -37,7 +37,7 @@ class SharedPrefContactRepository(
         val json = sharedPrefs.getString(id.toString().plus(CONTACT_POSTFIX), "")
 
         val contact = Gson().fromJson(json, Contact::class.java)
-        val groupJson = sharedPrefs.getString(contact.id.toString().plus(GROUP_POSTFIX), "")
+        val groupJson = sharedPrefs.getString(contact.contactGroup.toString().plus(GROUP_POSTFIX), "")
         val group = Gson().fromJson(groupJson, ContactGroup::class.java)
 
         return Response(MappedContact(contact, group))

@@ -13,7 +13,7 @@ import kz.kolesa.contactlistapp.domain.MappedContact
  * Created by Alikhan on 12/11/2018.
  */
 class MainAdapter(
-    private val contactList: List<MappedContact>,
+    private var contactList: ArrayList<MappedContact>,
     private val listener: ItemClickListener
 ) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): MainAdapter.ViewHolder {
@@ -30,8 +30,8 @@ class MainAdapter(
     }
 
     fun setList(newList: List<MappedContact>) {
-        contactList.toMutableList().clear()
-        contactList.toMutableList().addAll(newList)
+        contactList.clear()
+        contactList.addAll(newList)
         notifyDataSetChanged()
     }
 
